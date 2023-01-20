@@ -1,6 +1,7 @@
 import React from 'react';
 
 function App() {
+  let a;
   const name = `alex + ${7} +age`;
   return (
     <div>
