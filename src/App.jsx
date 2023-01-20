@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <h1>alex</h1>
-      <h2>{name.length}</h2>
+      <h2>{name.length</h2>
     </div>
   );
 }
