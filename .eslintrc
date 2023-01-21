@@ -1,0 +1,47 @@
+{
+  "parser": "@babel/eslint-parser",
+  "extends": "airbnb-base",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "rules": {
+    "max-len": [
+      "error",
+      150
+    ],
+    "no-tabs": "off",
+    "no-alert": "off",
+    //    "indent": [2,"tab"],
+    "no-param-reassign": "off",
+    "prefer-destructuring": "off",
+    "linebreak-style": 0,
+    "global-require": 0,
+    "eslint linebreak-style": [
+      0,
+      "error",
+      "windows"
+    ],
+    "function-paren-newline": 0,
+    "no-restricted-globals": 1,
+    "object-curly-newline": [
+      "error",
+      {
+        "multiline": true
+      }
+    ],
+    "lines-between-class-members": [
+      "error",
+      "never",
+      {
+        "exceptAfterSingleLine": true
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
