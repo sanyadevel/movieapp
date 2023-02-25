@@ -5,19 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7330d95-7b60-4fbb-a8a8-7512aa5b5605" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.babelrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.cjs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.husky/pre-commit" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.huskyrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/vite.config.js" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.eslintrc.cjs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.husky/pre-commit" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsonSchemas.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/noConnectionImg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Movie/Movie.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Movie/Movie.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Movie/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MovieList/MovieList.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MovieList/MovieList.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/MovieList/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PageNotFoundErrorBoundary/PageNotFound.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PaginationPages/PaginationPages.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PaginationPages/PaginationPages.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PaginationPages/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SearchMovies/SearchMovies.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SearchMovies/SearchMovies.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SearchMovies/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SelectSearchRatedButtons/SelectSearchRatedButtons.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SelectSearchRatedButtons/SelectSearchRatedButtons.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/SelectSearchRatedButtons/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/isLoadingComponent/IsLoading.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/isLoadingComponent/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,39 +47,79 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FormatOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
+    <option name="myAllFileTypesSelected" value="false" />
+    <option name="mySelectedFileTypes">
+      <set>
+        <option value="Angular2Html" />
+        <option value="CSS" />
+        <option value="Cucumber" />
+        <option value="EJS" />
+        <option value="EditorConfig" />
+        <option value="GraphQL" />
+        <option value="GraphQL Endpoint" />
+        <option value="HTML" />
+        <option value="HTTP Request" />
+        <option value="Handlebars/Mustache" />
+        <option value="JSON" />
+        <option value="Jade" />
+        <option value="JavaScript" />
+        <option value="Less" />
+        <option value="Markdown" />
+        <option value="RNG Compact" />
+        <option value="SCSS" />
+        <option value="Sass" />
+        <option value="Shell Script" />
+        <option value="TypeScript" />
+        <option value="Vue.js" />
+        <option value="XHTML" />
+        <option value="XML" />
+        <option value="YAML" />
+      </set>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="OptimizeOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2Kbs81b0ToTBneMBIP06KWK73uL" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "code.cleanup.on.save": "true",
-    "last_opened_file_path": "/Users/sanyadev/WebstormProjects/moviesapp",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/Users/sanyadev/WebstormProjects/moviesapp/node_modules/prettier",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;code.cleanup.on.save&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/sanyadev/WebstormProjects/moviesapp&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/sanyadev/WebstormProjects/moviesapp/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/public/assets/images" />
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/src/assets/images" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -67,7 +129,17 @@
       <option name="presentableId" value="Default" />
       <updated>1674254453521</updated>
       <workItem from="1674254454611" duration="401000" />
-      <workItem from="1674254875677" duration="4706000" />
+      <workItem from="1674254875677" duration="45740000" />
+      <workItem from="1674988387183" duration="7064000" />
+      <workItem from="1675003636175" duration="9387000" />
+      <workItem from="1677068734531" duration="27503000" />
+      <workItem from="1677158250052" duration="17194000" />
+      <workItem from="1677183915350" duration="33000" />
+      <workItem from="1677231720790" duration="10074000" />
+      <workItem from="1677255649803" duration="7402000" />
+      <workItem from="1677320171671" duration="31392000" />
+      <workItem from="1677359802824" duration="889000" />
+      <workItem from="1677360962700" duration="1000" />
     </task>
     <servers />
   </component>

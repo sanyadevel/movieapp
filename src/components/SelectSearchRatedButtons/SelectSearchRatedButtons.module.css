@@ -1,0 +1,9 @@
+.searchButtons{
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+}
+.rightSearchButton{
+    margin-right: 15px;
+}
+

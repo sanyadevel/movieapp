@@ -1,47 +1,110 @@
 {
-  "parser": "@babel/eslint-parser",
-  "extends": "airbnb-base",
   "env": {
     "browser": true,
-    "es6": true,
-    "node": true
+    "es2021": true
   },
+  "eslint no-trailing-spaces": ["error", { "skipBlankLines": false }],
+  "ignorePatterns": ["node_modules", "dist", "build"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "prettier", "import"],
   "rules": {
-    "max-len": [
+    "indent": "off",
+    "eslint newline-after-var": ["error", "always"],
+    "prettier/prettier": [
       "error",
-      150
+      {
+        "endOfLine": "auto"
+      }
     ],
+    "linebreak-style": 0,
     "no-tabs": "off",
     "no-alert": "off",
-    //    "indent": [2,"tab"],
-    "no-param-reassign": "off",
-    "prefer-destructuring": "off",
-    "linebreak-style": 0,
-    "global-require": 0,
-    "eslint linebreak-style": [
-      0,
-      "error",
-      "windows"
+    "quotes": ["error", "single"],
+    "jsx-a11y/control-has-associated-label": [
+      2,
+      {
+        "labelAttributes": ["label"],
+        "controlComponents": ["CustomComponent"],
+        "ignoreElements": ["audio", "canvas", "embed", "input", "textarea", "tr", "video"],
+        "ignoreRoles": [
+          "grid",
+          "listbox",
+          "menu",
+          "menubar",
+          "radiogroup",
+          "row",
+          "tablist",
+          "toolbar",
+          "tree",
+          "treegrid"
+        ],
+        "depth": 3
+      }
     ],
-    "function-paren-newline": 0,
-    "no-restricted-globals": 1,
+    "react/button-has-type": [
+      "enabled",
+      {
+        "button": "boolean",
+        "submit": "boolean",
+        "reset": "boolean"
+      }
+    ],
+    "jsx-a11y/no-autofocus": [
+      2,
+      {
+        "ignoreNonDOM": true
+      }
+    ],
+    "semi": ["error", "always"],
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": 0,
+    "import/no-unresolved": [
+      2,
+      {
+        "caseSensitive": false
+      }
+    ],
     "object-curly-newline": [
       "error",
       {
         "multiline": true
       }
     ],
-    "lines-between-class-members": [
-      "error",
-      "never",
+    "react/jsx-filename-extension": [
+      1,
       {
-        "exceptAfterSingleLine": true
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "import/order": [
+      2,
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "newlines-between": "always"
       }
     ]
   },
   "settings": {
-    "react": {
-      "version": "detect"
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
     }
   }
 }
