@@ -13,7 +13,17 @@
   display: flex;
   justify-content: center;
 }
-.container {
+
+@media only screen and (min-width: 421px) and (max-width: 767px) {
+.container{
   background-color: #ffffff;
-  width: 1010px;
+}
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    background-color: #ffffff;
+    width: 1010px;
+
+  }
 }

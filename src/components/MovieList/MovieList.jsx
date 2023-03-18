@@ -8,6 +8,8 @@ import PageNotFound from '../PageNotFoundErrorBoundary';
 import IsLoading from '../isLoadingComponent';
 import PropTypes from 'prop-types';
 import movieStyled from './MovieList.module.css';
+import PaginationSearchPage from '../Paginations';
+import SearchMovies from '../SearchMovies';
 
 class MovieList extends Component {
   constructor(props) {
@@ -15,115 +17,173 @@ class MovieList extends Component {
   }
 
   state = {
-    movies: [], // потом изменю название если что
-    API_KEY: 'ec987f239ac912179a92ac312d07bcba',
+    movies: [],
     SEARCH_TERM: 'return',
-    PAGE: this.props.PAGE,
     INCLUDE_ADULT_PARAM: false,
     isLoading: false,
     errorBoundery: false,
     pages: null,
-    movieIsNotFound: false,
+    PAGE: 1,
+    newMoviesWithGenres: [],
   };
 
-  URL = `https://api.themoviedb.org/3/search/movie?api_key=${this.state.API_KEY}&language=en-US&query=${this.state.SEARCH_TERM}=return&page=${this.state.PAGE}&include_adult=${this.state.INCLUDE_ADULT_PARAM}`;
+  URL = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.API_KEY}&language=en-US&query=${this.state.SEARCH_TERM}&page=${this.state.PAGE}&include_adult=${this.state.INCLUDE_ADULT_PARAM}`;
 
-  getTheMoviesFromApi = async () => {
+  getMoviesFromApi = async () => {
     try {
-      const moviesListApi = await axios
-        .get(this.URL)
-        .then((movie) => movie.data);
+      const moviesListApi = await axios.get(this.URL);
+      const data = await moviesListApi.data;
 
-      this.setState(
-        {
-          movies: [...this.state.movies, ...moviesListApi.results],
-          pages: moviesListApi.total_pages,
-        },
-        () => {
-          this.getFilteredMovies();
-        },
-      );
+      this.setState({
+        movies: [...data.results].map((movie) => ({
+          ...movie,
+        })),
+        pages: data['total_pages'],
+      });
     } catch (error) {
       this.setState({ errorBoundery: true });
     }
   };
 
-  filteredMovies;
-
-  getFilteredMovies = () => {
-    this.filteredMovies = this.state.movies.filter((movie) => {
-      return (movie.overview || movie.title).includes(this.props.inputMovie);
-    });
-    return this.filteredMovies;
+  getPageNum = (actualPage) => {
+    this.setState({ PAGE: actualPage });
   };
 
-  checkAvailabilityOfMovie = () => {
-    if (this.filteredMovies.length === 0) {
-      this.setState({ movieIsNotFound: true });
+  getInputMovie = (inputMovieDetails) => {
+    if (inputMovieDetails !== ''.trim()) {
+      this.setState({ SEARCH_TERM: inputMovieDetails }, () => {});
     } else {
-      this.setState({ movieIsNotFound: false });
+      this.setState({ SEARCH_TERM: 'return' }, () => {});
     }
   };
 
-  componentDidMount() {
+  guestSessionValue = localStorage.getItem('guest_session_id');
+
+  getGuestTokenId = async () => {
+    try {
+      let tokenId;
+      const tokenDataJson = await axios.get(
+        `https://api.themoviedb.org/3/authentication/guest_session/new?api_key=${this.props.API_KEY}`,
+      );
+      tokenId = await tokenDataJson.data['guest_session_id'];
+
+      if (!this.guestSessionValue) {
+        localStorage.setItem('guest_session_id', tokenId);
+      }
+    } catch (e) {
+      alert(` ${e} Try to refresh the page or try later`);
+    }
+  };
+
+  async getNewMoviesWithGenres() {
+    await this.getMoviesFromApi();
+
+    const newMovieGenres = this.state.movies.map((movie) => {
+      const arrGenres = [];
+      movie['genre_ids'].forEach((genre) => {
+        this.props.movieGenres.forEach((key) => {
+          if (genre === key.id) {
+            arrGenres.push(key.name);
+          }
+        });
+      });
+      return { ...movie, arrGenres };
+    });
+    await this.setState({ newMoviesWithGenres: newMovieGenres });
+  }
+
+  async componentDidMount() {
     this.setState({ isLoading: true });
 
-    setTimeout(() => {
-      this.setState({ isLoading: false });
+    if (!this.guestSessionValue) {
+      await this.getGuestTokenId();
+    }
 
-      this.getTheMoviesFromApi();
+    setTimeout(async () => {
+      await this.getMoviesFromApi();
+
+      this.setState({ isLoading: false }, async () => {
+        await this.getNewMoviesWithGenres();
+      });
     }, 400);
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.PAGE !== this.props.PAGE) {
-      this.props.getPaginationPages(this.state.pages);
-      this.getFilteredMovies();
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.PAGE !== this.state.PAGE) {
+      this.setState({ isLoading: true }, async () => {
+        try {
+          this.setState(
+            {
+              PAGE: this.state.PAGE,
+              movies: [],
+            },
+            async () => {
+              this.URL = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.API_KEY}&language=en-US&query=${this.state.SEARCH_TERM}&page=${this.state.PAGE}&include_adult=${this.state.INCLUDE_ADULT_PARAM}`;
 
-      this.setState(
-        {
-          PAGE: this.props.PAGE,
-          movies: [],
-        },
-        () => {
-          this.URL = `https://api.themoviedb.org/3/search/movie?api_key=${this.state.API_KEY}&language=en-US&query=${this.state.SEARCH_TERM}=return&page=${this.state.PAGE}&include_adult=${this.state.INCLUDE_ADULT_PARAM}`;
-          this.getTheMoviesFromApi();
-        },
-      );
+              await this.getMoviesFromApi();
+              await this.getNewMoviesWithGenres();
+            },
+          );
+        } catch (e) {
+          alert(`Try to refresh the page or try later :, ${e}`);
+        } finally {
+          this.setState({ isLoading: false });
+        }
+      });
     }
 
-    if (prevProps.inputMovie !== this.props.inputMovie) {
-      this.checkAvailabilityOfMovie();
+    if (prevState.SEARCH_TERM !== this.state.SEARCH_TERM) {
+      if (this.state.SEARCH_TERM.trim() !== '') {
+        this.setState({ SEARCH_TERM: this.state.SEARCH_TERM }, async () => {
+          this.URL = `https://api.themoviedb.org/3/search/movie?api_key=${this.props.API_KEY}&language=en-US&query=${this.state.SEARCH_TERM}&page=${this.state.PAGE}&include_adult=${this.state.INCLUDE_ADULT_PARAM}`;
+
+          await this.getMoviesFromApi();
+          await this.getNewMoviesWithGenres();
+        });
+      } else {
+        this.setState({ movies: [], SEARCH_TERM: 'return' }, async () => {
+          this.URL = `https://api.themoviedb.org/3/search/movie?api_key=${this.state.API_KEY}&language=en-US&query=${this.state.SEARCH_TERM}&page=${this.state.PAGE}&include_adult=${this.state.INCLUDE_ADULT_PARAM}`;
+
+          await this.getMoviesFromApi();
+          await this.getNewMoviesWithGenres();
+        });
+        this.setState({ PAGE: this.state.PAGE });
+      }
     }
   }
 
   render() {
     return (
       <>
-        {this.state.movieIsNotFound && (
-          <h3 className={movieStyled.movieIsNotFound}>
-            The Movie is Not Found !
-          </h3>
-        )}
+        <SearchMovies getInputMovie={this.getInputMovie} />
         {this.state.errorBoundery && <PageNotFound />}
         {this.state.isLoading ? (
           <IsLoading />
         ) : (
           <div className={movieStyled.movieList}>
-            {this.getFilteredMovies().map((movie) => (
+            {this.state.newMoviesWithGenres.map((movie) => (
               <Movie
-                key={crypto.randomUUID()}
+                key={movie.id}
                 id={movie.id}
-                backgroundImage={movie.backdrop_path}
-                title={movie.original_title}
-                description={movie.overview}
-                releaseDate={movie.release_date}
-                voteAverage={movie.vote_average}
-                voteCount={movie.vote_count}
-                adultCategory={movie.adult}
+                backgroundImage={movie['poster_path']}
+                title={movie['original_title']}
+                description={movie['overview']}
+                releaseDate={movie['release_date']}
+                voteAverage={movie['vote_average']}
+                voteCount={movie['vote_count']}
+                adultCategory={movie['adult']}
+                rateMovie={this.props.rateMovie}
+                genres={movie.arrGenres}
               />
             ))}
           </div>
+        )}
+        {this.state.movies.length !== 0 && (
+          <PaginationSearchPage
+            page={this.state.PAGE}
+            pages={this.state.pages}
+            getPageNum={this.getPageNum}
+          />
         )}
       </>
     );

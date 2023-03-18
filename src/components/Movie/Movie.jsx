@@ -1,15 +1,28 @@
 /* eslint-disable */
 import React from 'react';
 import movie from './Movie.module.css';
+import imageNotFound from '../../assets/images/image not found blet.webp';
 
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Rate } from 'antd';
 
 function Movie(props) {
-  const { backgroundImage, title, description, releaseDate, voteAverage } =
-    props;
+  const {
+    backgroundImage,
+    title,
+    description,
+    releaseDate,
+    voteAverage,
+    id,
+    rateMovie,
+    rating,
+    genres,
+  } = props;
+
   const voteAverageModified = Number(voteAverage.toString().slice(0, 3));
+  const imageBaseURL = `https://image.tmdb.org/t/p/original/${backgroundImage}`;
+
   let styledVoteAverage;
 
   if (voteAverageModified > 3 && voteAverageModified <= 5) {
@@ -23,8 +36,8 @@ function Movie(props) {
   }
 
   return (
-    <MovieCard>
-      <MovieImage src={backgroundImage} />
+    <MovieCards>
+      <MovieImage src={backgroundImage ? imageBaseURL : imageNotFound} />
       <MovieDetails>
         <CardHeader>
           <MovieTitle>{title.split(' ').slice(0, 4).join(' ')}</MovieTitle>
@@ -34,8 +47,9 @@ function Movie(props) {
         </CardHeader>
         <MovieDate>{releaseDate}</MovieDate>
         <MovieCategory>
-          <Action>Action</Action>
-          <Drama>Drama</Drama>
+          {genres.map((genre) => (
+            <Genre key={genre}>{genre}</Genre>
+          ))}
         </MovieCategory>
         <MovieDescription>
           {description.split(' ').slice(0, 20).join(' ')}...
@@ -43,11 +57,12 @@ function Movie(props) {
         <Rate
           className={movie.rateMovie}
           allowHalf
-          defaultValue={0}
+          defaultValue={rating}
           count={10}
+          onChange={(rating) => rateMovie(id, rating)}
         />
       </MovieDetails>
-    </MovieCard>
+    </MovieCards>
   );
 }
 
@@ -67,9 +82,12 @@ Movie.defaultProps = {
   title: '',
 };
 
-export default Movie;
-
-const MovieCard = styled.div`
+const MovieCards = styled.div`
+  @media only screen and (min-width: 421px) and (max-width: 767px) {
+    max-width: 320px;
+    width: 387px;
+    margin: 32px 35px 0 5%;
+  }
   width: 454px;
   height: 281px;
   position: relative;
@@ -79,27 +97,52 @@ const MovieCard = styled.div`
   margin: 32px -5px 0 36px;
 `;
 const CardHeader = styled.header`
+  @media only screen and (min-width: 421px) and (max-width: 767px) {
+    display: flex;
+    width: auto;
+  }
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 255px;
 `;
 const MovieDetails = styled.div`
-  margin: 9px 0;
-  width: 271px;
-  padding-left: 9px;
+  @media only screen and (min-width: 421px) and (max-width: 767px) {
+    width: 251px;
+    margin: -60px 0 0 10px;
+  }
+  @media only screen and (min-width: 768px) {
+    margin: 9px 0;
+    width: 271px;
+    padding-left: 9px;
+  }
 `;
 const MovieImage = styled.img`
-  width: 183px;
-  height: 281px;
+  @media only screen and (min-width: 421px) and (max-width: 767px) {
+    width: 60px;
+    height: 91px;
+    margin: -170px 0 0 10px;
+  }
+  @media only screen and (min-width: 768px) {
+    width: 183px;
+    height: 281px;
+  }
 `;
 
 const MovieTitle = styled.h1`
-  font-size: 20px;
-  margin-top: 12px;
-  width: 200px;
+  @media only screen and (min-width: 421px) and (max-width: 767px) {
+    font-size: 20px;
+  }
+  @media only screen and (min-width: 768px) {
+    font-size: 20px;
+    margin-top: 12px;
+    width: 200px;
+  }
 `;
 const RatingNumber = styled.h4`
+  @media only screen and (min-width: 421px) and (max-width: 767px) {
+    margin-top: -1px;
+  }
   height: 30px;
   width: 30px;
   background-color: white;
@@ -115,24 +158,27 @@ const MovieDate = styled.h4`
   margin-top: 7px;
 `;
 const MovieCategory = styled.div`
-  margin-top: 9px;
+  margin: 9px -5px;
+  height: auto;
 `;
 const MovieDescription = styled.p`
   font-size: 12px;
   margin-top: 10px;
   margin-right: 5px;
   line-height: 22px;
+  flex-wrap: wrap;
 `;
-const Action = styled.span`
+const Genre = styled.span`
+  display: inline-block;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.65);
-  border: 1px solid rgba(217, 217, 217, 1);
   background-color: rgba(250, 250, 250, 1);
   height: 20px;
-  width: 46px;
+  width: auto;
   border-radius: 2px;
-  margin-top: 10px;
+  margin-top: 6px;
+  margin-left: 7px;
+  padding: 1px 4px;
 `;
-const Drama = styled(Action)`
-  margin-left: 8px;
-`;
+
+export default Movie;

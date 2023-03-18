@@ -1,5 +1,15 @@
-.rateMovie{
+@media only screen and (min-width: 421px) and (max-width: 767px) {
+  .rateMovie {
+    transform: translate(-10px, 22px);
+    width: 239px;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .rateMovie {
     width: 239px;
     margin-top: 7px;
     font-size: 16px;
+  }
 }

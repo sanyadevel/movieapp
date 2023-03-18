@@ -5,41 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7330d95-7b60-4fbb-a8a8-7512aa5b5605" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.eslintrc.cjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.husky/pre-commit" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsonSchemas.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/noConnectionImg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Movie/Movie.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Movie/Movie.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Movie/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MovieList/MovieList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MovieList/MovieList.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/MovieList/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PageNotFoundErrorBoundary/PageNotFound.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PaginationPages/PaginationPages.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PaginationPages/PaginationPages.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PaginationPages/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SearchMovies/SearchMovies.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SearchMovies/SearchMovies.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SearchMovies/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SelectSearchRatedButtons/SelectSearchRatedButtons.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SelectSearchRatedButtons/SelectSearchRatedButtons.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/SelectSearchRatedButtons/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/isLoadingComponent/IsLoading.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/isLoadingComponent/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/images/image not found blet.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Paginations/PaginationRatedPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Paginations/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/RatedMovies/RatedMovies.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/RatedMovies/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Movie/Movie.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Movie/Movie.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Movie/Movie.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Movie/Movie.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MovieList/MovieList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MovieList/MovieList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MovieList/MovieList.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MovieList/MovieList.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PaginationPages/PaginationPages.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Paginations/PaginationSearchPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PaginationPages/PaginationPages.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Paginations/Paginations.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PaginationPages/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchMovies/SearchMovies.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchMovies/SearchMovies.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SelectSearchRatedButtons/SelectSearchRatedButtons.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SelectSearchRatedButtons/SelectSearchRatedButtons.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +85,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/sanyadev/WebstormProjects/moviesapp/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -113,11 +95,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets/images" />
+      <recent name="$PROJECT_DIR$/public/assets/images" />
+      <recent name="$PROJECT_DIR$/src/assets" />
       <recent name="$PROJECT_DIR$/src/components" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/public/assets/images" />
-      <recent name="$PROJECT_DIR$/public" />
-      <recent name="$PROJECT_DIR$/src/assets/images" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -140,6 +122,22 @@
       <workItem from="1677320171671" duration="31392000" />
       <workItem from="1677359802824" duration="889000" />
       <workItem from="1677360962700" duration="1000" />
+      <workItem from="1677363163507" duration="702000" />
+      <workItem from="1677515310328" duration="8982000" />
+      <workItem from="1677577256103" duration="9535000" />
+      <workItem from="1677656738225" duration="245000" />
+      <workItem from="1677675145240" duration="16913000" />
+      <workItem from="1677799916583" duration="928000" />
+      <workItem from="1677851915229" duration="29252000" />
+      <workItem from="1678092989018" duration="42000" />
+      <workItem from="1678121225821" duration="7660000" />
+      <workItem from="1678211297322" duration="6662000" />
+      <workItem from="1678463287635" duration="51579000" />
+      <workItem from="1678877106395" duration="6384000" />
+      <workItem from="1678997047126" duration="17251000" />
+      <workItem from="1679082760122" duration="7186000" />
+      <workItem from="1679095938959" duration="1037000" />
+      <workItem from="1679164702644" duration="3473000" />
     </task>
     <servers />
   </component>
