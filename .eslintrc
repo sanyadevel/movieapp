@@ -24,6 +24,7 @@
   "plugins": ["react", "prettier", "import"],
   "rules": {
     "indent": "off",
+    "no-shadow": "off",
     "eslint newline-after-var": ["error", "always"],
     "prettier/prettier": [
       "error",
@@ -40,7 +41,15 @@
       {
         "labelAttributes": ["label"],
         "controlComponents": ["CustomComponent"],
-        "ignoreElements": ["audio", "canvas", "embed", "input", "textarea", "tr", "video"],
+        "ignoreElements": [
+          "audio",
+          "canvas",
+          "embed",
+          "input",
+          "textarea",
+          "tr",
+          "video"
+        ],
         "ignoreRoles": [
           "grid",
           "listbox",
@@ -85,6 +94,15 @@
         "multiline": true
       }
     ],
+    "no-useless-constructor": "off",
+    "react/sort-comp": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": ".*",
+        "argsIgnorePattern": "^(resolve|reject|_).*"
+      }
+    ],
     "react/jsx-filename-extension": [
       1,
       {
@@ -94,7 +112,14 @@
     "import/order": [
       2,
       {
-        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
         "newlines-between": "always"
       }
     ]

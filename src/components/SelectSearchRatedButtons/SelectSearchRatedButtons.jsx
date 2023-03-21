@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom';
+
 import searchButton from './SelectSearchRatedButtons.module.css';
 
 function SelectSearchRatedButtons() {

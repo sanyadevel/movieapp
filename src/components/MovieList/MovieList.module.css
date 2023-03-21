@@ -1,22 +1,21 @@
 @media only screen and (min-width: 421px) and (max-width: 767px) {
-    .movieList{
-        position: relative;
-        display: block;
-
-    }
+  .movieList {
+    position: relative;
+    display: block;
+  }
 }
+
 @media only screen and (min-width: 768px) {
-    .movieList{
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
+  .movieList {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
-.movieIsNotFound{
-    text-align: center;
-    margin-top: 40px;
-    color:tomato;
-
+.movieIsNotFound {
+  text-align: center;
+  margin-top: 40px;
+  color: tomato;
 }

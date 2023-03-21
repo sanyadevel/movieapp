@@ -1,11 +1,10 @@
-/* eslint-disable */
 import React from 'react';
-import movie from './Movie.module.css';
-import imageNotFound from '../../assets/images/image not found blet.webp';
-
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Rate } from 'antd';
+
+import movie from './Movie.module.css';
+import imageNotFound from '../../assets/images/image not found blet.webp';
 
 function Movie(props) {
   const {
@@ -52,14 +51,15 @@ function Movie(props) {
           ))}
         </MovieCategory>
         <MovieDescription>
-          {description.split(' ').slice(0, 20).join(' ')}...
+          {description.split(' ').slice(0, 20).join(' ')}
+          ...
         </MovieDescription>
         <Rate
           className={movie.rateMovie}
           allowHalf
           defaultValue={rating}
           count={10}
-          onChange={(rating) => rateMovie(id, rating)}
+          onChange={(ratingNum) => rateMovie(id, ratingNum)}
         />
       </MovieDetails>
     </MovieCards>
@@ -72,6 +72,10 @@ Movie.propTypes = {
   releaseDate: PropTypes.string,
   description: PropTypes.string,
   title: PropTypes.string,
+  id: PropTypes.number,
+  rateMovie: PropTypes.func,
+  rating: PropTypes.number,
+  genres: PropTypes.arrayOf(PropTypes.string),
 };
 
 Movie.defaultProps = {
@@ -80,6 +84,10 @@ Movie.defaultProps = {
   releaseDate: '',
   description: '',
   title: '',
+  id: null,
+  rateMovie: () => {},
+  rating: null,
+  genres: [''],
 };
 
 const MovieCards = styled.div`
@@ -96,6 +104,7 @@ const MovieCards = styled.div`
   box-shadow: 4px 4px 5px 0 rgba(212, 212, 212, 1);
   margin: 32px -5px 0 36px;
 `;
+
 const CardHeader = styled.header`
   @media only screen and (min-width: 421px) and (max-width: 767px) {
     display: flex;
@@ -106,23 +115,27 @@ const CardHeader = styled.header`
   justify-content: space-between;
   width: 255px;
 `;
+
 const MovieDetails = styled.div`
   @media only screen and (min-width: 421px) and (max-width: 767px) {
     width: 251px;
     margin: -60px 0 0 10px;
   }
+
   @media only screen and (min-width: 768px) {
     margin: 9px 0;
     width: 271px;
     padding-left: 9px;
   }
 `;
+
 const MovieImage = styled.img`
   @media only screen and (min-width: 421px) and (max-width: 767px) {
     width: 60px;
     height: 91px;
     margin: -170px 0 0 10px;
   }
+
   @media only screen and (min-width: 768px) {
     width: 183px;
     height: 281px;
@@ -133,12 +146,14 @@ const MovieTitle = styled.h1`
   @media only screen and (min-width: 421px) and (max-width: 767px) {
     font-size: 20px;
   }
+
   @media only screen and (min-width: 768px) {
     font-size: 20px;
     margin-top: 12px;
     width: 200px;
   }
 `;
+
 const RatingNumber = styled.h4`
   @media only screen and (min-width: 421px) and (max-width: 767px) {
     margin-top: -1px;
@@ -153,14 +168,17 @@ const RatingNumber = styled.h4`
   font-size: 12px;
   margin: 12px 9px 0 0;
 `;
+
 const MovieDate = styled.h4`
   font-size: 12px;
   margin-top: 7px;
 `;
+
 const MovieCategory = styled.div`
   margin: 9px -5px;
   height: auto;
 `;
+
 const MovieDescription = styled.p`
   font-size: 12px;
   margin-top: 10px;
@@ -168,6 +186,7 @@ const MovieDescription = styled.p`
   line-height: 22px;
   flex-wrap: wrap;
 `;
+
 const Genre = styled.span`
   display: inline-block;
   font-size: 12px;
