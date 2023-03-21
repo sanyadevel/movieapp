@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Movie from '../Movie';
 import movieStyled from '../MovieList/MovieList.module.css';
 import PaginationRatedPage from '../Paginations/PaginationRatedPage';
-import IsLoading from '../isLoadingComponent';
+import Loading from '../Loading';
 
 class RatedMovies extends Component {
   constructor(props) {
@@ -134,7 +134,7 @@ class RatedMovies extends Component {
           </h3>
         )}
         {isLoading ? (
-          <IsLoading />
+          <Loading />
         ) : (
           <div className={movieStyled.movieList}>
             {newRatedMoviesWithGenres.map((movie) => (

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Movie from '../Movie';
 import movieStyled from './MovieList.module.css';
 import PageIsNotFound from '../PageNotFoundErrorBoundary';
-import IsLoading from '../isLoadingComponent';
+import Loading from '../Loading';
 import PaginationSearchPage from '../Paginations';
 import SearchMovies from '../SearchMovies';
 
@@ -189,7 +189,7 @@ class MovieList extends Component {
         )}
         {errorBoundary && <PageIsNotFound />}
         {isLoading ? (
-          <IsLoading />
+          <Loading />
         ) : (
           <div className={movieStyled.movieList}>
             {newMoviesWithGenres.map((movie) => (

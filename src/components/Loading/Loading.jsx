@@ -1,9 +1,9 @@
 import React from 'react';
 import { Space, Spin } from 'antd';
 
-import isLoadingStyles from './IsLoading.module.css';
+import isLoadingStyles from './Loading.module.css';
 
-function IsLoading() {
+function Loading() {
   return (
     <Space direction="vertical" className={isLoadingStyles.antdSpaceUi}>
       <Spin tip="Loading content..." size="large" />
@@ -11,4 +11,4 @@ function IsLoading() {
   );
 }
 
-export default IsLoading;
+export default Loading;
