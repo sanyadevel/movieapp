@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Movie from '../Movie';
 import movieStyled from './MovieList.module.css';
 import PageIsNotFound from '../PageNotFoundErrorBoundary';
-import Loading from '../Loading';
+import Loading from '../PageLoading';
 import PaginationSearchPage from '../Paginations';
 import SearchMovies from '../SearchMovies';
 

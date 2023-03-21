@@ -1,7 +1,7 @@
 import React from 'react';
 import { Space, Spin } from 'antd';
 
-import isLoadingStyles from './Loading.module.css';
+import isLoadingStyles from './PageLoading.css';
 
 function Loading() {
   return (

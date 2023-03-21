@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Movie from '../Movie';
 import movieStyled from '../MovieList/MovieList.module.css';
 import PaginationRatedPage from '../Paginations/PaginationRatedPage';
-import Loading from '../Loading';
+import Loading from '../PageLoading';
 
 class RatedMovies extends Component {
   constructor(props) {
