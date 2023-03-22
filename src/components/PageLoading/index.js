@@ -1,3 +1,3 @@
-import Loading from './Loading';
+import Loading from './PageLoading';
 
 export default Loading;
