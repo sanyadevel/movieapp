@@ -44,8 +44,7 @@ class MovieList extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { PAGE, SEARCH_TERM, INCLUDE_ADULT_PARAM } = this.state;
-    const { API_KEY } = this.props;
+    const { PAGE, SEARCH_TERM } = this.state;
 
     if (prevState.PAGE !== PAGE) {
       try {
