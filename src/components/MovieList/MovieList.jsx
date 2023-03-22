@@ -24,10 +24,6 @@ class MovieList extends Component {
       newMoviesWithGenres: [],
     };
 
-    const { API_KEY } = this.props;
-    const { INCLUDE_ADULT_PARAM, SEARCH_TERM, PAGE } = this.state;
-
-    this.URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${SEARCH_TERM}&page=${PAGE}&include_adult=${INCLUDE_ADULT_PARAM}`;
     this.guestSessionValue = localStorage.getItem('guest_session_id');
   }
 
@@ -61,8 +57,6 @@ class MovieList extends Component {
           async () => {
             await this.setState({ isLoading: true });
 
-            this.URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${SEARCH_TERM}&page=${PAGE}&include_adult=${INCLUDE_ADULT_PARAM}`;
-
             await this.getMoviesFromApi();
             await this.getNewMoviesWithGenres();
             await this.setState({ isLoading: false });
@@ -79,7 +73,6 @@ class MovieList extends Component {
       if (SEARCH_TERM.trim() !== '') {
         this.setState({ SEARCH_TERM }, async () => {
           await this.setState({ isLoading: true });
-          this.URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${SEARCH_TERM}&page=${PAGE}&include_adult=${INCLUDE_ADULT_PARAM}`;
 
           await this.getMoviesFromApi();
           await this.getNewMoviesWithGenres();
@@ -88,8 +81,6 @@ class MovieList extends Component {
       } else {
         this.setState({ movies: [], SEARCH_TERM: 'return' }, async () => {
           await this.setState({ isLoading: true });
-
-          this.URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${SEARCH_TERM}&page=${PAGE}&include_adult=${INCLUDE_ADULT_PARAM}`;
 
           await this.getMoviesFromApi();
           await this.getNewMoviesWithGenres();
@@ -106,7 +97,11 @@ class MovieList extends Component {
   };
 
   getMoviesFromApi = async () => {
+    const { PAGE, SEARCH_TERM, INCLUDE_ADULT_PARAM } = this.state;
+    const { API_KEY } = this.props;
     try {
+      this.URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${SEARCH_TERM}&page=${PAGE}&include_adult=${INCLUDE_ADULT_PARAM}`;
+
       const moviesListApi = await axios.get(this.URL);
       const data = await moviesListApi.data;
 
