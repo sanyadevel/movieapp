@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 
 import Movie from '../Movie';
 import movieStyled from '../MovieList/MovieList.module.css';
-import PaginationRatedPage from '../Paginations/PaginationRatedPage';
-import Loading from '../PageLoading';
+import AntdPagination from '../AntPagination/AntdPagination';
+import Loader from '../Loader';
+import { getRatedMoviesFromApi } from '../services/services';
 
 class RatedMovies extends Component {
   constructor(props) {
@@ -13,48 +13,39 @@ class RatedMovies extends Component {
 
     this.state = {
       ratedMovies: [],
-      totalMoviePages: 1,
-      PAGE: 1,
+      totalPages: 1,
+      page: 1,
       isLoading: false,
       newRatedMoviesWithGenres: [],
     };
-
-    const { API_KEY } = this.props;
-    const { PAGE } = this.state;
-
-    this.guestSessionValue = localStorage.getItem('guest_session_id');
-    this.ratedMoviesAdress = `https://api.themoviedb.org/3/guest_session/${this.guestSessionValue}/rated/movies?api_key=${API_KEY}&language=en-US&sort_by=created_at.asc&page=${PAGE}`;
   }
 
   componentDidMount() {
     this.setState({ isLoading: true });
 
     setTimeout(async () => {
-      await this.getRatedMoviesFromApi();
+      await this.getRatedMovies();
 
-      this.setState({ isLoading: false });
-
-      await this.getNewRatedMoviesWithGenres();
+      await this.setState({ isLoading: false }, async () => {
+        await this.getNewRatedMoviesWithGenres();
+      });
     }, 250);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { PAGE } = this.state;
-    const { API_KEY } = this.props;
+    const { page } = this.state;
 
-    if (prevState.PAGE !== PAGE) {
+    if (prevState.page !== page) {
       try {
         this.setState(
           {
-            PAGE,
+            page,
             ratedMovies: [],
           },
           async () => {
             this.setState({ isLoading: true });
 
-            this.ratedMoviesAdress = `https://api.themoviedb.org/3/guest_session/${this.guestSessionValue}/rated/movies?api_key=${API_KEY}&language=en-US&sort_by=created_at.asc&page=${PAGE}`;
-
-            await this.getRatedMoviesFromApi();
+            await this.getRatedMovies();
             await this.getNewRatedMoviesWithGenres();
 
             this.setState({ isLoading: false });
@@ -68,24 +59,30 @@ class RatedMovies extends Component {
     }
   }
 
-  getRatedMoviesFromApi = async () => {
+  getRatedMovies = async () => {
+    const { page } = this.state;
     try {
-      if (this.guestSessionValue) {
-        const jsonRatedMovies = await axios.get(this.ratedMoviesAdress);
-        const ratedMovies = await jsonRatedMovies.data.results;
-        const totalMoviePages = await jsonRatedMovies.data.total_pages;
+      const moviesData = await getRatedMoviesFromApi(page);
 
-        this.setState({ ratedMovies, totalMoviePages });
-      }
+      await this.setState(
+        {
+          ratedMovies: moviesData.results,
+          totalPages: moviesData.total_pages,
+        },
+        () => {
+          console.log(moviesData.results, 'moviesData.results');
+          console.log(moviesData.total_pages, 'moviesData.total_pages');
+        },
+      );
     } catch (e) {
       throw new Error(`${e}, 'Try to refresh the page or try later `);
     }
   };
 
   async getNewRatedMoviesWithGenres() {
-    const { movieGenres } = this.props;
+    await this.getRatedMovies();
 
-    await this.getRatedMoviesFromApi();
+    const { movieGenres } = this.props;
 
     this.setState((prevState) => {
       const newMovieGenres = prevState.ratedMovies.map((movie) => {
@@ -106,25 +103,20 @@ class RatedMovies extends Component {
   }
 
   changeRatedMoviePage = (currentPage) => {
-    this.setState({ PAGE: currentPage }, async () => {
-      const { API_KEY } = this.props;
-      const { PAGE } = this.state;
-
-      this.ratedMoviesAdress = `https://api.themoviedb.org/3/guest_session/${this.guestSessionValue}/rated/movies?api_key=${API_KEY}&language=en-US&sort_by=created_at.asc&page=${PAGE}`;
-
-      await this.getRatedMoviesFromApi();
+    this.setState({ page: currentPage }, async () => {
+      await this.getRatedMovies();
     });
   };
 
   render() {
+    console.log('rendered');
     const {
       isLoading,
       newRatedMoviesWithGenres,
-      totalMoviePages,
+      totalPages,
       ratedMovies,
-      PAGE,
+      page,
     } = this.state;
-    const { rateMovie } = this.props;
 
     return (
       <>
@@ -134,7 +126,7 @@ class RatedMovies extends Component {
           </h3>
         )}
         {isLoading ? (
-          <Loading />
+          <Loader />
         ) : (
           <div className={movieStyled.movieList}>
             {newRatedMoviesWithGenres.map((movie) => (
@@ -149,26 +141,25 @@ class RatedMovies extends Component {
                 voteCount={movie.vote_count}
                 adultCategory={movie.adult}
                 rating={movie.rating}
-                rateMovie={rateMovie}
                 genres={movie.arrGenres}
               />
             ))}
           </div>
         )}
-        <PaginationRatedPage
-          totalMoviePages={totalMoviePages}
-          ratedMovies={ratedMovies}
-          page={PAGE}
-          changeRatedMoviePage={this.changeRatedMoviePage}
-        />
+        {newRatedMoviesWithGenres.length && (
+          <AntdPagination
+            totalPages={totalPages}
+            ratedMovies={ratedMovies}
+            page={page}
+            changePage={this.changeRatedMoviePage}
+          />
+        )}
       </>
     );
   }
 }
 
 RatedMovies.propTypes = {
-  rateMovie: PropTypes.func,
-  API_KEY: PropTypes.string,
   movieGenres: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.number,
@@ -188,8 +179,6 @@ RatedMovies.propTypes = {
 };
 
 RatedMovies.defaultProps = {
-  rateMovie: () => {},
-  API_KEY: null,
   movieGenres: [
     {
       key: null,

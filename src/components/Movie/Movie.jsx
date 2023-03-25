@@ -5,6 +5,7 @@ import { Rate } from 'antd';
 
 import movie from './Movie.module.css';
 import imageNotFound from '../../assets/images/image not found blet.webp';
+import { rateMovie } from '../services/services';
 
 function Movie(props) {
   const {
@@ -14,13 +15,12 @@ function Movie(props) {
     releaseDate,
     voteAverage,
     id,
-    rateMovie,
     rating,
     genres,
   } = props;
 
   const voteAverageModified = Number(voteAverage.toString().slice(0, 3));
-  const imageBaseURL = `https://image.tmdb.org/t/p/original/${backgroundImage}`;
+  const imageURL = `https://image.tmdb.org/t/p/original/${backgroundImage}`;
 
   let styledVoteAverage;
 
@@ -36,10 +36,10 @@ function Movie(props) {
 
   return (
     <MovieCards>
-      <MovieImage src={backgroundImage ? imageBaseURL : imageNotFound} />
+      <MovieImage src={backgroundImage ? imageURL : imageNotFound} />
       <MovieDetails>
         <CardHeader>
-          <MovieTitle>{title.split(' ').slice(0, 4).join(' ')}</MovieTitle>
+          <MovieTitle>{title.split(' ').slice(0, 1).join(' ')}</MovieTitle>
           <RatingNumber style={{ border: `3px solid ${styledVoteAverage}` }}>
             {voteAverageModified}
           </RatingNumber>
@@ -73,7 +73,6 @@ Movie.propTypes = {
   description: PropTypes.string,
   title: PropTypes.string,
   id: PropTypes.number,
-  rateMovie: PropTypes.func,
   rating: PropTypes.number,
   genres: PropTypes.arrayOf(PropTypes.string),
 };
@@ -85,7 +84,6 @@ Movie.defaultProps = {
   description: '',
   title: '',
   id: null,
-  rateMovie: () => {},
   rating: null,
   genres: [''],
 };

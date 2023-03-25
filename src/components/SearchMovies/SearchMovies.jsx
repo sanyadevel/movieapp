@@ -14,7 +14,7 @@ class SearchMovies extends Component {
     const { getInputMovie } = this.props;
 
     getInputMovie(e.target.value);
-  }, 400);
+  }, 700);
 
   render() {
     return (

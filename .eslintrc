@@ -88,14 +88,10 @@
         "caseSensitive": false
       }
     ],
-    "object-curly-newline": [
-      "error",
-      {
-        "multiline": true
-      }
-    ],
     "no-useless-constructor": "off",
     "react/sort-comp": "off",
+    "object-curly-newline": "off",
+    "react/jsx-filename-extension": "off",
     "no-unused-vars": [
       "error",
       {
@@ -103,12 +99,7 @@
         "argsIgnorePattern": "^(resolve|reject|_).*"
       }
     ],
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [".js", ".jsx"]
-      }
-    ],
+    "operator-linebreak": "off",
     "import/order": [
       2,
       {

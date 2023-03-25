@@ -1,9 +1,9 @@
 import React from 'react';
 import { Space, Spin } from 'antd';
 
-import loadingStyles from './PageLoading.module.css';
+import loadingStyles from './Loader.module.css';
 
-function PageLoading() {
+function Loader() {
   return (
     <Space direction="vertical" className={loadingStyles.antdSpaceUi}>
       <Spin tip="Loading content..." size="large" />
@@ -11,4 +11,4 @@ function PageLoading() {
   );
 }
 
-export default PageLoading;
+export default Loader;
