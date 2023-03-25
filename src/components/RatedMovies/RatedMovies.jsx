@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import Movie from '../Movie';
 import movieStyled from '../MovieList/MovieList.module.css';
 import AntdPagination from '../AntPagination/AntdPagination';
 import Loader from '../Loader';
-import { getRatedMoviesFromApi } from '../services/services';
+import { getRatedMoviesFromApi } from '../../services/services';
+import GenresContext from '../GenresContext';
 
 class RatedMovies extends Component {
+  static contextType = GenresContext;
+
   constructor(props) {
     super(props);
 
@@ -64,16 +66,10 @@ class RatedMovies extends Component {
     try {
       const moviesData = await getRatedMoviesFromApi(page);
 
-      await this.setState(
-        {
-          ratedMovies: moviesData.results,
-          totalPages: moviesData.total_pages,
-        },
-        () => {
-          console.log(moviesData.results, 'moviesData.results');
-          console.log(moviesData.total_pages, 'moviesData.total_pages');
-        },
-      );
+      await this.setState({
+        ratedMovies: moviesData.results,
+        totalPages: moviesData.total_pages,
+      });
     } catch (e) {
       throw new Error(`${e}, 'Try to refresh the page or try later `);
     }
@@ -82,14 +78,14 @@ class RatedMovies extends Component {
   async getNewRatedMoviesWithGenres() {
     await this.getRatedMovies();
 
-    const { movieGenres } = this.props;
+    const { context } = this;
 
     this.setState((prevState) => {
       const newMovieGenres = prevState.ratedMovies.map((movie) => {
         const arrGenres = [];
 
         movie.genre_ids.forEach((genre) => {
-          movieGenres.forEach((key) => {
+          context.forEach((key) => {
             if (genre === key.id) {
               arrGenres.push(key.name);
             }
@@ -109,7 +105,6 @@ class RatedMovies extends Component {
   };
 
   render() {
-    console.log('rendered');
     const {
       isLoading,
       newRatedMoviesWithGenres,
@@ -158,42 +153,5 @@ class RatedMovies extends Component {
     );
   }
 }
-
-RatedMovies.propTypes = {
-  movieGenres: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.number,
-      id: PropTypes.number,
-      backgroundImage: PropTypes.string,
-      title: PropTypes.string,
-      description: PropTypes.string,
-      releaseDate: PropTypes.number,
-      voteAverage: PropTypes.number,
-      voteCount: PropTypes.number,
-      adultCategory: PropTypes.string,
-      rating: PropTypes.number,
-      rateMovie: PropTypes.func,
-      genres: PropTypes.arrayOf(PropTypes.string),
-    }),
-  ),
-};
-
-RatedMovies.defaultProps = {
-  movieGenres: [
-    {
-      key: null,
-      id: null,
-      backgroundImage: '',
-      title: '',
-      description: '',
-      releaseDate: null,
-      voteAverage: null,
-      voteCount: null,
-      adultCategory: '',
-      rating: null,
-      genres: ['', ''],
-    },
-  ],
-};
 
 export default RatedMovies;

@@ -5,7 +5,7 @@ import { Rate } from 'antd';
 
 import movie from './Movie.module.css';
 import imageNotFound from '../../assets/images/image not found blet.webp';
-import { rateMovie } from '../services/services';
+import { rateMovie } from '../../services/services';
 
 function Movie(props) {
   const {

@@ -100,6 +100,7 @@
       }
     ],
     "operator-linebreak": "off",
+    "react/static-property-placement": "off",
     "import/order": [
       2,
       {
@@ -113,7 +114,8 @@
         ],
         "newlines-between": "always"
       }
-    ]
+    ],
+    "eslint import/no-cycle": "off"
   },
   "settings": {
     "import/resolver": {

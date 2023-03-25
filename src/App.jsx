@@ -6,8 +6,9 @@ import './App.css';
 import logoStyles from './components/NoInternetConnection/NoInternetConnection.module.css';
 import MovieList from './components/MovieList';
 import NoInternetConnection from './components/NoInternetConnection';
+import { getGenresFromApi } from './services/services';
 import RatedMovies from './components/RatedMovies';
-import { getGenresFromApi } from './components/services/services';
+import GenresContext from './components/GenresContext';
 
 class App extends Component {
   constructor(props) {
@@ -26,6 +27,18 @@ class App extends Component {
 
   render() {
     const { movieGenres } = this.state;
+    const items = [
+      {
+        key: 'Tab1',
+        label: 'Search',
+        children: <MovieList />,
+      },
+      {
+        key: 'Tab2',
+        label: 'Rated',
+        children: <RatedMovies />,
+      },
+    ];
 
     return (
       <>
@@ -36,27 +49,19 @@ class App extends Component {
         <div className="movie-app">
           <Online>
             <div className="container">
-              <Tabs
-                centered="true"
-                tabBarStyle={{
-                  width: '13%',
-                  margin: '22px auto',
-                }}
-                size="large"
-                defaultActiveKey="1"
-                items={[
-                  {
-                    key: '1',
-                    label: 'Search',
-                    children: <MovieList movieGenres={movieGenres} />,
-                  },
-                  {
-                    key: '2',
-                    label: 'Rated',
-                    children: <RatedMovies movieGenres={movieGenres} />,
-                  },
-                ]}
-              />
+              <GenresContext.Provider value={movieGenres}>
+                <Tabs
+                  centered="true"
+                  tabBarStyle={{
+                    width: '13%',
+                    margin: '22px auto',
+                  }}
+                  size="large"
+                  defaultActiveKey="1"
+                  items={items}
+                  destroyInactiveTabPane
+                />
+              </GenresContext.Provider>
             </div>
           </Online>
         </div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import Movie from '../Movie';
 import movieStyled from './MovieList.module.css';
@@ -7,13 +6,16 @@ import PageIsNotFound from '../PageIsNotFound';
 import Loader from '../Loader';
 import AntPagination from '../AntPagination';
 import SearchMovies from '../SearchMovies';
+import GenresContext from '../GenresContext';
 import {
   guestSessionValue,
   getGuestTokenId,
   getMoviesFromApi,
-} from '../services/services';
+} from '../../services/services';
 
 class MovieList extends Component {
+  static contextType = GenresContext;
+
   constructor(props) {
     super(props);
 
@@ -118,14 +120,14 @@ class MovieList extends Component {
 
   async getNewMoviesWithGenres() {
     await this.getMovies();
-    const { movieGenres } = this.props;
+    const { context } = this;
 
     this.setState((prevState) => {
       const newMovieGenres = prevState.movies.map((movie) => {
         const arrGenres = [];
 
         movie.genre_ids.forEach((genre) => {
-          movieGenres.forEach((key) => {
+          context.forEach((key) => {
             if (genre === key.id) {
               arrGenres.push(key.name);
             }
@@ -188,41 +190,5 @@ class MovieList extends Component {
     );
   }
 }
-
-MovieList.propTypes = {
-  movieGenres: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.number,
-      id: PropTypes.number,
-      backgroundImage: PropTypes.string,
-      title: PropTypes.string,
-      description: PropTypes.string,
-      releaseDate: PropTypes.number,
-      voteAverage: PropTypes.number,
-      voteCount: PropTypes.number,
-      adultCategory: PropTypes.number,
-      rateMovie: PropTypes.func,
-      genres: PropTypes.arrayOf(PropTypes.string),
-    }),
-  ),
-};
-
-MovieList.defaultProps = {
-  movieGenres: [
-    {
-      key: null,
-      id: null,
-      backgroundImage: '',
-      title: '',
-      description: '',
-      releaseDate: null,
-      voteAverage: null,
-      voteCount: null,
-      adultCategory: null,
-      rateMovie: () => {},
-      genres: [''],
-    },
-  ],
-};
 
 export default MovieList;
