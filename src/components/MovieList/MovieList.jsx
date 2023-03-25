@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Movie from '../Movie';
 import movieStyled from './MovieList.module.css';
@@ -7,11 +8,7 @@ import Loader from '../Loader';
 import AntPagination from '../AntPagination';
 import SearchMovies from '../SearchMovies';
 import GenresContext from '../GenresContext';
-import {
-  guestSessionValue,
-  getGuestTokenId,
-  getMoviesFromApi,
-} from '../../services/services';
+import { getMoviesFromApi } from '../../services/services';
 
 class MovieList extends Component {
   static contextType = GenresContext;
@@ -34,10 +31,6 @@ class MovieList extends Component {
   async componentDidMount() {
     try {
       this.setState({ isLoading: true });
-
-      if (!guestSessionValue) {
-        await getGuestTokenId();
-      }
 
       this.setState({ isLoading: false }, async () => {
         await this.getNewMoviesWithGenres();
@@ -151,6 +144,7 @@ class MovieList extends Component {
   render() {
     const { page, pages, movies, hasError, isLoading, newMoviesWithGenres } =
       this.state;
+    const { tokenId } = this.props;
 
     return (
       <>
@@ -175,6 +169,7 @@ class MovieList extends Component {
                 voteCount={movie.vote_count}
                 adultCategory={movie.adult}
                 genres={movie.arrGenres}
+                tokenId={tokenId}
               />
             ))}
           </div>
@@ -190,5 +185,13 @@ class MovieList extends Component {
     );
   }
 }
+
+MovieList.propTypes = {
+  tokenId: PropTypes.number,
+};
+
+MovieList.defaultProps = {
+  tokenId: null,
+};
 
 export default MovieList;

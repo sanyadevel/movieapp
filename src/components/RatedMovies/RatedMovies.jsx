@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Movie from '../Movie';
 import movieStyled from '../MovieList/MovieList.module.css';
@@ -28,9 +29,13 @@ class RatedMovies extends Component {
     setTimeout(async () => {
       await this.getRatedMovies();
 
-      await this.setState({ isLoading: false }, async () => {
-        await this.getNewRatedMoviesWithGenres();
-      });
+      await this.setState(
+        { isLoading: false },
+        async () => {
+          await this.getNewRatedMoviesWithGenres();
+        },
+        () => {},
+      );
     }, 250);
   }
 
@@ -63,8 +68,9 @@ class RatedMovies extends Component {
 
   getRatedMovies = async () => {
     const { page } = this.state;
+    const { tokenId } = this.props;
     try {
-      const moviesData = await getRatedMoviesFromApi(page);
+      const moviesData = await getRatedMoviesFromApi(page, tokenId);
 
       await this.setState({
         ratedMovies: moviesData.results,
@@ -112,6 +118,7 @@ class RatedMovies extends Component {
       ratedMovies,
       page,
     } = this.state;
+    const { tokenId } = this.props;
 
     return (
       <>
@@ -137,6 +144,7 @@ class RatedMovies extends Component {
                 adultCategory={movie.adult}
                 rating={movie.rating}
                 genres={movie.arrGenres}
+                tokenId={tokenId}
               />
             ))}
           </div>
@@ -153,5 +161,13 @@ class RatedMovies extends Component {
     );
   }
 }
+
+RatedMovies.propTypes = {
+  tokenId: PropTypes.number,
+};
+
+RatedMovies.defaultProps = {
+  tokenId: null,
+};
 
 export default RatedMovies;

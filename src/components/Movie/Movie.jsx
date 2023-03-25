@@ -17,6 +17,7 @@ function Movie(props) {
     id,
     rating,
     genres,
+    tokenId,
   } = props;
 
   const voteAverageModified = Number(voteAverage.toString().slice(0, 3));
@@ -59,7 +60,7 @@ function Movie(props) {
           allowHalf
           defaultValue={rating}
           count={10}
-          onChange={(ratingNum) => rateMovie(id, ratingNum)}
+          onChange={(ratingNum) => rateMovie(id, ratingNum, tokenId)}
         />
       </MovieDetails>
     </MovieCards>
@@ -75,6 +76,7 @@ Movie.propTypes = {
   id: PropTypes.number,
   rating: PropTypes.number,
   genres: PropTypes.arrayOf(PropTypes.string),
+  tokenId: PropTypes.number,
 };
 
 Movie.defaultProps = {
@@ -86,6 +88,7 @@ Movie.defaultProps = {
   id: null,
   rating: null,
   genres: [''],
+  tokenId: null,
 };
 
 const MovieCards = styled.div`
