@@ -19,24 +19,22 @@ class RatedMovies extends Component {
       totalPages: 1,
       page: 1,
       isLoading: false,
-      newRatedMoviesWithGenres: [],
+      ratedMoviesList: [],
     };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setState({ isLoading: true });
 
-    setTimeout(async () => {
-      await this.getRatedMovies();
+    await this.getRatedMovies();
 
-      await this.setState(
-        { isLoading: false },
-        async () => {
-          await this.getNewRatedMoviesWithGenres();
-        },
-        () => {},
-      );
-    }, 250);
+    await this.setState(
+      { isLoading: false },
+      async () => {
+        await this.getNewRatedMoviesWithGenres();
+      },
+      () => {},
+    );
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -100,7 +98,7 @@ class RatedMovies extends Component {
         return { ...movie, arrGenres };
       });
 
-      return { newRatedMoviesWithGenres: newMovieGenres };
+      return { ratedMoviesList: newMovieGenres };
     });
   }
 
@@ -111,18 +109,13 @@ class RatedMovies extends Component {
   };
 
   render() {
-    const {
-      isLoading,
-      newRatedMoviesWithGenres,
-      totalPages,
-      ratedMovies,
-      page,
-    } = this.state;
+    const { isLoading, ratedMoviesList, totalPages, ratedMovies, page } =
+      this.state;
     const { tokenId } = this.props;
 
     return (
       <>
-        {!isLoading && newRatedMoviesWithGenres.length === 0 && (
+        {!isLoading && ratedMoviesList.length === 0 && (
           <h3 className={movieStyled.movieIsNotFound}>
             No Rated Movies Found !
           </h3>
@@ -131,7 +124,7 @@ class RatedMovies extends Component {
           <Loader />
         ) : (
           <div className={movieStyled.movieList}>
-            {newRatedMoviesWithGenres.map((movie) => (
+            {ratedMoviesList.map((movie) => (
               <Movie
                 key={movie.id}
                 id={movie.id}
@@ -149,7 +142,7 @@ class RatedMovies extends Component {
             ))}
           </div>
         )}
-        {newRatedMoviesWithGenres.length && (
+        {ratedMoviesList.length && (
           <AntdPagination
             totalPages={totalPages}
             ratedMovies={ratedMovies}

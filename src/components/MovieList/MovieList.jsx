@@ -18,8 +18,8 @@ class MovieList extends Component {
 
     this.state = {
       movies: [],
-      SEARCH_TERM: 'return',
-      INCLUDE_ADULT_PARAM: false,
+      searchTerm: 'return',
+      isIncludedAdultParam: false,
       isLoading: false,
       hasError: false,
       pages: null,
@@ -43,7 +43,7 @@ class MovieList extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { page, SEARCH_TERM } = this.state;
+    const { page, searchTerm } = this.state;
 
     if (prevState.page !== page) {
       try {
@@ -66,16 +66,16 @@ class MovieList extends Component {
       }
     }
 
-    if (prevState.SEARCH_TERM !== SEARCH_TERM) {
-      if (SEARCH_TERM.trim() !== '') {
-        this.setState({ SEARCH_TERM }, async () => {
+    if (prevState.searchTerm !== searchTerm) {
+      if (searchTerm.trim() !== '') {
+        this.setState({ searchTerm }, async () => {
           await this.setState({ isLoading: true });
 
           await this.getNewMoviesWithGenres();
           await this.setState({ isLoading: false });
         });
       } else {
-        this.setState({ movies: [], SEARCH_TERM: 'return' }, async () => {
+        this.setState({ movies: [], searchTerm: 'return' }, async () => {
           await this.setState({ isLoading: true });
 
           await this.getNewMoviesWithGenres();
@@ -92,12 +92,12 @@ class MovieList extends Component {
   };
 
   getMovies = async () => {
-    const { page, SEARCH_TERM, INCLUDE_ADULT_PARAM } = this.state;
+    const { page, searchTerm, isIncludedAdultParam } = this.state;
     try {
       const movies = await getMoviesFromApi(
-        SEARCH_TERM,
+        searchTerm,
         page,
-        INCLUDE_ADULT_PARAM,
+        isIncludedAdultParam,
       );
 
       this.setState({
@@ -135,9 +135,9 @@ class MovieList extends Component {
 
   getInputMovie = (inputMovieDetails) => {
     if (inputMovieDetails !== '') {
-      this.setState({ SEARCH_TERM: inputMovieDetails });
+      this.setState({ searchTerm: inputMovieDetails });
     } else {
-      this.setState({ SEARCH_TERM: 'return' });
+      this.setState({ searchTerm: 'return' });
     }
   };
 

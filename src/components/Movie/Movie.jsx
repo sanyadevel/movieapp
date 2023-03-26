@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Rate } from 'antd';
 
 import movie from './Movie.module.css';
-import imageNotFound from '../../assets/images/image not found blet.webp';
+import movieImageIsNotFound from '../../assets/images/movieImageIsNotFound.png';
 import { rateMovie } from '../../services/services';
 
 function Movie(props) {
@@ -37,7 +37,7 @@ function Movie(props) {
 
   return (
     <MovieCards>
-      <MovieImage src={backgroundImage ? imageURL : imageNotFound} />
+      <MovieImage src={backgroundImage ? imageURL : movieImageIsNotFound} />
       <MovieDetails>
         <CardHeader>
           <MovieTitle>{title.split(' ').slice(0, 1).join(' ')}</MovieTitle>

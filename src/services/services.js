@@ -36,11 +36,11 @@ export const getGuestTokenId = async () => {
 };
 
 export const getMoviesFromApi = async (
-  SEARCH_TERM,
-  PAGE,
-  INCLUDE_ADULT_PARAM,
+  searchTerm,
+  page,
+  isIncludedAdultParam,
 ) => {
-  const URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${SEARCH_TERM}&page=${PAGE}&include_adult=${INCLUDE_ADULT_PARAM}`;
+  const URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchTerm}&page=${page}&include_adult=${isIncludedAdultParam}`;
   const moviesListApi = await axios.get(URL);
   const { data } = moviesListApi;
 
@@ -50,9 +50,9 @@ export const getMoviesFromApi = async (
 export const getRatedMoviesFromApi = async (page, tokenId) => {
   let moviesData;
   try {
-    const ratedMoviesAdress = `https://api.themoviedb.org/3/guest_session/${tokenId}/rated/movies?api_key=${API_KEY}&language=en-US&sort_by=created_at.asc&page=${page}`;
+    const ratedMoviesURL = `https://api.themoviedb.org/3/guest_session/${tokenId}/rated/movies?api_key=${API_KEY}&language=en-US&sort_by=created_at.asc&page=${page}`;
 
-    const jsonRatedMovies = await axios.get(ratedMoviesAdress);
+    const jsonRatedMovies = await axios.get(ratedMoviesURL);
     moviesData = await jsonRatedMovies.data;
   } catch (e) {
     throw new Error(`${e}, 'Try to refresh the page or try later `);
