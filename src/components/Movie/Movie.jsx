@@ -76,7 +76,7 @@ Movie.propTypes = {
   id: PropTypes.number,
   rating: PropTypes.number,
   genres: PropTypes.arrayOf(PropTypes.string),
-  tokenId: PropTypes.number,
+  tokenId: PropTypes.string,
 };
 
 Movie.defaultProps = {
@@ -88,7 +88,7 @@ Movie.defaultProps = {
   id: null,
   rating: null,
   genres: [''],
-  tokenId: null,
+  tokenId: '',
 };
 
 const MovieCards = styled.div`

@@ -27,14 +27,9 @@ class RatedMovies extends Component {
     this.setState({ isLoading: true });
 
     await this.getRatedMovies();
+    await this.getNewRatedMoviesWithGenres();
 
-    await this.setState(
-      { isLoading: false },
-      async () => {
-        await this.getNewRatedMoviesWithGenres();
-      },
-      () => {},
-    );
+    this.setState({ isLoading: false });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -156,11 +151,11 @@ class RatedMovies extends Component {
 }
 
 RatedMovies.propTypes = {
-  tokenId: PropTypes.number,
+  tokenId: PropTypes.string,
 };
 
 RatedMovies.defaultProps = {
-  tokenId: null,
+  tokenId: '',
 };
 
 export default RatedMovies;

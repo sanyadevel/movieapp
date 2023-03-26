@@ -32,13 +32,11 @@ class MovieList extends Component {
     try {
       this.setState({ isLoading: true });
 
-      this.setState({ isLoading: false }, async () => {
-        await this.getNewMoviesWithGenres();
-      });
+      await this.getNewMoviesWithGenres();
+
+      this.setState({ isLoading: false });
     } catch (e) {
       this.setState({ hasError: true });
-    } finally {
-      this.setState({ hasError: false });
     }
   }
 
@@ -113,6 +111,7 @@ class MovieList extends Component {
 
   async getNewMoviesWithGenres() {
     await this.getMovies();
+
     const { context } = this;
 
     this.setState((prevState) => {
@@ -187,11 +186,11 @@ class MovieList extends Component {
 }
 
 MovieList.propTypes = {
-  tokenId: PropTypes.number,
+  tokenId: PropTypes.string,
 };
 
 MovieList.defaultProps = {
-  tokenId: null,
+  tokenId: '',
 };
 
 export default MovieList;
