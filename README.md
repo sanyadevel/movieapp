@@ -1,1 +1,1 @@
-movieapp-swart.vercel.app
+https://movieapp-swart.vercel.app/
