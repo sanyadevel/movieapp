@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c7330d95-7b60-4fbb-a8a8-7512aa5b5605" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Movie/Movie.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Movie/Movie.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +73,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/sanyadev/WebstormProjects/moviesapp/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -143,6 +144,17 @@
       <workItem from="1679602090559" duration="40200000" />
       <workItem from="1679767603009" duration="13816000" />
       <workItem from="1679821905956" duration="3304000" />
+      <workItem from="1679849843377" duration="6150000" />
+      <workItem from="1679909084767" duration="113000" />
+      <workItem from="1679911119918" duration="4000" />
+      <workItem from="1679911585321" duration="910000" />
+      <workItem from="1679920134706" duration="42000" />
+      <workItem from="1680092457268" duration="28000" />
+      <workItem from="1680170018673" duration="6000" />
+      <workItem from="1680268482486" duration="44000" />
+      <workItem from="1680269000735" duration="13000" />
+      <workItem from="1680269175070" duration="9000" />
+      <workItem from="1680469482887" duration="5000" />
     </task>
     <servers />
   </component>

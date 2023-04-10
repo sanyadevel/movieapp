@@ -137,13 +137,15 @@ class RatedMovies extends Component {
             ))}
           </div>
         )}
-        {ratedMoviesList.length && (
+        {ratedMoviesList.length ? (
           <AntdPagination
             totalPages={totalPages}
             ratedMovies={ratedMovies}
             page={page}
             changePage={this.changeRatedMoviePage}
           />
+        ) : (
+          ''
         )}
       </>
     );

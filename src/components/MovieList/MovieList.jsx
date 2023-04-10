@@ -173,12 +173,14 @@ class MovieList extends Component {
             ))}
           </div>
         )}
-        {movies.length && (
+        {movies.length ? (
           <AntPagination
             page={page}
             totalPages={pages}
             changePage={this.getPageNum}
           />
+        ) : (
+          ''
         )}
       </>
     );

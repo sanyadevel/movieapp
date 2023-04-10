@@ -80,7 +80,7 @@ Movie.propTypes = {
 };
 
 Movie.defaultProps = {
-  voteAverage: 0,
+  voteAverage: null,
   backgroundImage: '',
   releaseDate: '',
   description: '',
